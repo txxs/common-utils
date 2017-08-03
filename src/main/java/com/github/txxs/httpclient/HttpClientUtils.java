@@ -127,10 +127,8 @@ public class HttpClientUtils {
     }
 
     public static List<NameValuePair> parse(NameValueList<String, String> nameValueList) {
-        return (List)(nameValueList == null?new ArrayList():(List)nameValueList.getList().stream().map((nvp)
-                -> {
-                        return new BasicNameValuePair((String)nvp.getName(), (String)nvp.getValue());
-                    }).collect(Collectors.toList()));
+        return (List)(nameValueList == null?new ArrayList():(List)nameValueList.getList().stream().map((nvp)-> {
+                        return new BasicNameValuePair((String)nvp.getName(), (String)nvp.getValue());}).collect(Collectors.toList()));
     }
 }
 

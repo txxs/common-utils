@@ -1,4 +1,4 @@
-package com.github.txxs;
+package com.txxs.common.utils;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

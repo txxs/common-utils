@@ -1,4 +1,4 @@
-package com.github.txxs.httpclient;
+package com.txxs.common.utils.httpclient;
 
 import org.apache.http.*;
 import org.apache.http.client.methods.CloseableHttpResponse;

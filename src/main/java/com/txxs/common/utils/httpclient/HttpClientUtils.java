@@ -1,12 +1,12 @@
-package com.github.txxs.httpclient;
+package com.txxs.common.utils.httpclient;
 
-import com.github.txxs.common.NameValueList;
+import com.txxs.common.utils.common.NameValueList;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
+
 import org.apache.http.Consts;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;

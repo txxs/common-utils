@@ -1,4 +1,4 @@
-package com.github.txxs.common;
+package com.txxs.common.utils.common;
 
 import java.util.ArrayList;
 import java.util.List;

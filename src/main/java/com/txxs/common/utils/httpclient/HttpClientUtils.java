@@ -11,6 +11,7 @@ import org.apache.http.Consts;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
@@ -34,9 +35,15 @@ public class HttpClientUtils {
     public HttpClientUtils() {
     }
 
+    private static CloseableHttpClient httpclient=null;
+
+    static {
+        RequestConfig config = RequestConfig.custom().build();
+        httpclient = HttpClients.custom().setDefaultRequestConfig(config).build();
+    }
+
     public static StringHttpResponse post(HttpHost host, URI uri, Header[] headers, String json) throws IOException {
         long t = System.currentTimeMillis();
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(host.toString().concat(uri.toString()));
         httpPost.setHeaders(headers);
         httpPost.setHeader(new BasicHeader("Content-Type", "application/json; charset=utf-8"));
@@ -48,7 +55,6 @@ public class HttpClientUtils {
 
     public static StringHttpResponse post(String url, Header[] headers, String json) throws IOException {
         long t = System.currentTimeMillis();
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
         httpPost.setHeaders(headers);
         httpPost.setHeader(new BasicHeader("Content-Type", "application/json; charset=utf-8"));
@@ -60,7 +66,6 @@ public class HttpClientUtils {
 
     public static StringHttpResponse put(HttpHost host, URI uri, Header[] headers, String json) throws IOException {
         long t = System.currentTimeMillis();
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPut httpPut = new HttpPut(host.toString().concat(uri.toString()));
         httpPut.setHeaders(headers);
         httpPut.setHeader(new BasicHeader("Content-Type", "application/json; charset=utf-8"));
@@ -72,7 +77,6 @@ public class HttpClientUtils {
 
     public static StringHttpResponse put(String url, Header[] headers, String json) throws IOException {
         long t = System.currentTimeMillis();
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPut httpPut = new HttpPut(url);
         httpPut.setHeaders(headers);
         httpPut.setHeader(new BasicHeader("Content-Type", "application/json; charset=utf-8"));
@@ -84,7 +88,6 @@ public class HttpClientUtils {
 
     public static StringHttpResponse get(HttpHost host, URI uri, Header[] headers, NameValueList<String, String> params) throws IOException {
         long t = System.currentTimeMillis();
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         String queryString = EntityUtils.toString(new UrlEncodedFormEntity(parse(params), Consts.UTF_8));
         HttpGet httpGet = new HttpGet(host.toString().concat(uri.toString()).concat("?").concat(queryString));
         httpGet.setHeaders(headers);
@@ -95,7 +98,6 @@ public class HttpClientUtils {
 
     public static StringHttpResponse get(String url, Header[] headers, NameValueList<String, String> params) throws IOException {
         long t = System.currentTimeMillis();
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         String queryString = EntityUtils.toString(new UrlEncodedFormEntity(parse(params), Consts.UTF_8));
         HttpGet httpGet = new HttpGet(url.concat("?").concat(queryString));
         httpGet.setHeaders(headers);
@@ -106,7 +108,6 @@ public class HttpClientUtils {
 
     public static StringHttpResponse delete(HttpHost host, URI uri, Header[] headers, NameValueList<String, String> params) throws IOException {
         long t = System.currentTimeMillis();
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         String queryString = EntityUtils.toString(new UrlEncodedFormEntity(parse(params), Consts.UTF_8));
         HttpDelete httpDelete = new HttpDelete(host.toString().concat(uri.toString()).concat("?").concat(queryString));
         httpDelete.setHeaders(headers);
@@ -117,7 +118,6 @@ public class HttpClientUtils {
 
     public static StringHttpResponse delete(String url, Header[] headers, NameValueList<String, String> params) throws IOException {
         long t = System.currentTimeMillis();
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         String queryString = EntityUtils.toString(new UrlEncodedFormEntity(parse(params), Consts.UTF_8));
         HttpDelete httpDelete = new HttpDelete(url.concat("?").concat(queryString));
         httpDelete.setHeaders(headers);

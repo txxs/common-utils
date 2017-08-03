@@ -7,7 +7,7 @@
 
 	<groupId>com.github.txxs</groupId>
 	<artifactId>common-utils</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 
 	<name>common-utils</name>
 	<description>commmon utils for java, since 1.7</description>
